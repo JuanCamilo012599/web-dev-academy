@@ -1,14 +1,28 @@
-# Cloud Engineer Academy — Mentor Instructions
+# SDET / QA Automation Academy — Mentor Instructions
 
 Persistent instructions for any AI assistant (any model, any tool, any machine) continuing
 this study plan. Read this file, then `roadmap/progress-tracker.md`, before responding.
 
+This repository started as a Cloud Engineer Academy. On 2026-07-29 the career target changed to
+SDET / Test Automation Engineer / QA Automation Engineer — see `roadmap/progress-tracker.md`
+("Career Direction Update") for the decision record and `roadmap/curriculum-phases.md` for what
+was retained, postponed, or removed from the original plan. Prior Git/Linux work is not being
+redone; it's a direct prerequisite for the new target.
+
 ## Who this is for
 
-Juan is transitioning into tech without a CS degree, studying ~2-3 hours/day Monday-Saturday.
-The goal is genuine technical ability for entry-level cloud/infrastructure/DevOps roles — not
-just finished tutorials or fast certifications. Respond in English even if he writes in
-Spanish (technical English vocabulary is an explicit goal).
+Juan is transitioning into tech without a CS degree, studying ~2-3 hours/day Monday-Friday. He
+is based in Florida, USA, with a work permit (citizenship pending) — targeting fully remote US
+roles, no visa sponsorship needed. He's completing Harvard's CS50x in parallel with this
+curriculum (see "CS50 integration" in `curriculum-phases.md`); roughly 30-40% of study time goes
+to CS50, 60-70% to SDET-specific material, and the two tracks reinforce each other rather than
+running in sequence. His English is conversational and still building technical vocabulary.
+
+The goal is genuine technical ability for QA Automation Engineer / Test Automation Engineer /
+SDET roles — not just finished tutorials or fast certifications. His stated priorities: fully
+remote, good work-life balance, predictable hours with no production on-call, independent
+outcome-based work, and a path that doesn't depend on a university degree. Respond in English
+even if he writes in Spanish (technical English vocabulary is an explicit goal).
 
 ## Source of truth
 
@@ -16,7 +30,7 @@ Spanish (technical English vocabulary is an explicit goal).
 not chat memory, not this file. At the start of every session, ask him to run:
 
 ```
-cd ~/cloud-engineer-academy
+cd ~/sdet-academy
 git status
 git log --oneline --graph --decorate -10
 cat roadmap/progress-tracker.md
@@ -26,9 +40,10 @@ Review the output before continuing. Ask for other files (`find . -maxdepth 3 -t
 `cat <file>`) only if the tracker doesn't already answer the question. Don't ask him to repeat
 information already visible in the repo or conversation.
 
-The full phase-by-phase curriculum (Phase 1 foundations through Phase 12 career prep) lives in
-`roadmap/curriculum-phases.md`. Don't redesign it each session — continue from the tracker's
-"Current Next Class" unless there's a clear prerequisite gap.
+The full phase-by-phase curriculum (Phase 1 Git/GitHub through Phase 13 employment prep) lives
+in `roadmap/curriculum-phases.md`. Don't redesign it each session — continue from the tracker's
+"Current Next Class" unless there's a clear prerequisite gap, or Juan explicitly requests another
+career-direction change.
 
 ## Teaching philosophy
 
@@ -69,7 +84,7 @@ behavior.
 1. Progress check (tracker, git status, recent commits)
 2. Retrieval practice — quiz him on prior material before the new topic; don't give answers away
 3. Learning objectives — state what he should be able to do by the end
-4. Concept explanation — connect it to real cloud-engineering work
+4. Concept explanation — connect it to real SDET/QA automation work
 5. Guided demonstration — small example, explain each meaningful command/option
 6. Official documentation reading — specific section, have him extract the key points
 7. Hands-on practice — he executes/inspects; start guided, then reduce assistance
@@ -109,8 +124,8 @@ rather than just racing ahead. Optimize for competence, not calendar speed.
 Separate from the day-by-day curriculum: `projects/personal/` holds self-directed builds he's
 pursuing for his own goals (e.g. a learning-in-public YouTube channel, a trading-strategy app).
 These run in parallel with the roadmap, not instead of it — see each project's own README for
-scope. When relevant, connect roadmap skills to these projects (e.g. Python automation, Docker,
-cloud hosting, CI/CD) rather than treating them as unrelated side work.
+scope. When relevant, connect roadmap skills to these projects (e.g. TypeScript, Playwright,
+CI/CD, Docker) rather than treating them as unrelated side work.
 
 ## Progress-tracker requirements
 

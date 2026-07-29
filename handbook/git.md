@@ -81,13 +81,13 @@ This helps prevent bad commits and accidental mistakes.
 A local repository is the Git project stored on my computer.
 
 Example:
-/home/juan/cloud-engineer-academy
+/home/juan/sdet-academy
 
 ### Remote Repository
 A remote repository is the Git project stored on GitHub.
 
 Example:
-github.com/JuanCamilo012599/cloud-engineer-academy
+github.com/JuanCamilo012599/sdet-academy
 
 ### origin
 origin is the default name Git uses for the remote repository.
@@ -110,7 +110,7 @@ Changes the URL of an existing remote
 I used this when my origin was set to HTTPS and I wanted to switch it to SSH
 
 Example:
-git remote set-url origin git@github.com:JuanCamilo012599/cloud-engineer-academy.git
+git remote set-url origin git@github.com:JuanCamilo012599/sdet-academy.git
 
 ### SSH Authentication
 SSH allows my computer to authenticate with GitHub using a key pair.

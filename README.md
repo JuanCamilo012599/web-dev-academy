@@ -1,22 +1,31 @@
-# Cloud Enginer Academy
+# SDET / QA Automation Academy
 
-This repository documents my journey to become a Cloud Engineer.
+This repository documents my journey to become a Test Automation Engineer / SDET. It started as
+a Cloud Engineer Academy; the career target changed on 2026-07-29 (see
+[roadmap/progress-tracker.md](roadmap/progress-tracker.md) for why, and
+[roadmap/curriculum-phases.md](roadmap/curriculum-phases.md) for what carried over).
 
 ## Goals
 
-- Learn Linux fundamentals
-- Learn Git and Github
-- Learn Python
-- Learn networking
-- Learn Docker
-- Learn AWS
-- Learn Terraform
-- Build real projects
-- Prepare for cloud engineering roles
+- Learn Git and GitHub (in progress, carried over from the original plan)
+- Learn TypeScript and JavaScript fundamentals
+- Learn HTML, CSS, and browser developer tools
+- Learn software testing principles
+- Learn Playwright for web automation
+- Learn API and HTTP testing
+- Learn SQL and database validation
+- Learn GitHub Actions and CI/CD
+- Learn basic Docker
+- Learn test architecture and how to eliminate flaky tests
+- Build a professional automation portfolio (3 projects)
+- Prepare for Test Automation Engineer / QA Automation Engineer / SDET roles
+
+Completing Harvard's CS50x in parallel — see "CS50 integration" in
+[roadmap/curriculum-phases.md](roadmap/curriculum-phases.md) for how it maps into this plan.
 
 ## Study Schedule
 
-I study 2 to 3 hours per day (sometimes more), Monday through Saturday. 
+I study 2 to 3 hours per day (sometimes more), Monday through Friday.
 
 ## Progress
 

@@ -37,7 +37,7 @@ A complete path starting from the root of the system.
 
 Example:
 
-/home/juan/cloud-engineer-academy
+/home/juan/sdet-academy
 
 ### Relative Path
 A path based on where I am currently located.
@@ -46,7 +46,7 @@ Example:
 
 If I am inside:
 
-/home/juan/cloud-engineer-academy
+/home/juan/sdet-academy
 
 Then:
 
@@ -54,7 +54,7 @@ cd journal
 
 takes me to:
 
-/home/juan/cloud-engineer-academy/journal
+/home/juan/sdet-academy/journal
 
 ### Parent Directory
 The folder that contains the folder I am currently inside.

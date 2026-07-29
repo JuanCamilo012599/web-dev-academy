@@ -1,8 +1,36 @@
-# Cloud Engineer Academy - Progress Tracker
+# SDET / QA Automation Academy - Progress Tracker
 
-This file is the source of truth for my Cloud Engineer Academy progress.
+This file is the source of truth for my SDET / QA Automation Academy progress.
 See `curriculum-phases.md` for the full phase-by-phase curriculum and
 `../CLAUDE.md` for mentor/teaching instructions.
+
+## Career Direction Update — 2026-07-29
+
+Career target changed from Cloud Engineer to **SDET / Test Automation Engineer / QA Automation
+Engineer**. Reasoning: fully remote work, good work-life balance, predictable hours with no
+production on-call, independent outcome-based work, a path accessible via skills/certs/projects
+without a university degree, and long-term $100k+ potential — SDET/test automation fits these
+priorities better than the original cloud-infrastructure target.
+
+**What transfers, unchanged:** all of Days 001-009 below. Git/GitHub (status, diff, add, commit,
+branching, merging, remotes, PRs, commit conventions, merge strategies, reset/revert/reflog/
+amend, cherry-pick) and Linux/command-line fundamentals are direct prerequisites for SDET work —
+test-code repos go through the same PR review process, CI triggers off the same branches, and
+recovering from a bad commit on a test suite uses the exact same tools practiced here. None of
+Days 001-009 needs to be redone.
+
+**What changed in the curriculum:** see `curriculum-phases.md` for the full revised phase
+structure (Phase 1 Git/GitHub → Phase 13 employment prep) and its "What carries over from the
+Cloud Engineer plan" section, which lists what was retained, postponed, or removed (Terraform,
+Kubernetes, deep networking, observability, and all three AWS certifications were removed as not
+load-bearing for this target; cloud fundamentals were kept but made lightweight and postponed).
+
+**Circumstances confirmed 2026-07-29** (informs pacing — revisit if these change): study time
+~2-3 hrs/day, Monday-Friday (previously included Saturday); programming background is CS50-only;
+English is conversational, still building technical vocabulary; based in Miramar, Florida, USA,
+with a work permit and citizenship pending — targeting US remote roles, no sponsorship needed;
+training budget roughly $200-1000 total, not recurring. No certificate is being pursued yet (see
+curriculum-phases.md "Certifications").
 
 Note: on 2026-07-14 the learning system was restructured — mentor instructions
 moved into `../CLAUDE.md`, the future curriculum moved into
@@ -112,7 +140,7 @@ Handbook:
 - handbook/git.md
 
 Remote repository:
-- github.com/JuanCamilo012599/cloud-engineer-academy
+- github.com/JuanCamilo012599/sdet-academy (renamed from cloud-engineer-academy on 2026-07-29)
 
 ---
 
@@ -334,23 +362,114 @@ only `main` remains locally and on GitHub, working tree clean.
 
 ---
 
-## Current Next Class
+## Day 009 - Recovery from common Git mistakes (IN PROGRESS, paused mid-session)
 
-Day 009 - Recovery from common Git mistakes (`git reset` --soft/--mixed/
---hard, `git revert`, `git reflog`, `git commit --amend`) — the last
-remaining Phase 1 Git/GitHub curriculum gap (PRs and commit messages are
-now covered as of Day 008).
+Status: In progress — not yet complete. Resume from "Where we left off" below.
+Do not restart from scratch; do not skip the pending independent challenge.
 
-Before starting Day 009:
-- Quick verbal spaced-review check-in: why squash-merge caused local/remote
-  divergence on Day 008 (new commit, no shared ancestry), and why `git
-  branch -d` didn't refuse to delete the squash-merged branch.
-- Note: `git reset --hard origin/main` was already used once on Day 008 as
-  a guided recovery — Day 009 should build the fuller mental model (soft
-  vs. mixed vs. hard, when each is appropriate, reflog as the safety net)
-  rather than starting from zero.
-- Rebase-and-merge was explained conceptually but never actually run —
-  flagged as unpracticed, pick up opportunistically when a suitable branch
-  exists.
+Spaced-review check-in (done, before new material):
+- Why squash-merge caused local/remote divergence on Day 008: correct
+  immediately ("no shared history").
+- Why `git branch -d` didn't refuse to delete the squash-merged branch:
+  did not remember at first (flagged honestly instead of guessing) — walked
+  back to first principles ("own upstream?") and got there correctly:
+  `-d` checks the branch's own tracked upstream/HEAD, never `main` directly.
+
+Documentation-integrity note (4th occurrence, same pattern as Days
+006/007/008): asked Juan to add a `handbook/git.md` note explaining why
+`-d` didn't warn. First attempt was near-verbatim copy of the mentor's
+wording; rejected. Second attempt changed one word; rejected again. Third
+attempt, after being told explicitly to say it out loud in chat *before*
+touching the file (he skipped that step and edited directly anyway), used
+genuinely different phrasing ("reachable from its tracked upstream") and
+was accepted. Process change agreed for future sessions: for concepts
+prone to this, Juan should state his explanation in chat first, before the
+mentor gives its version, so there's nothing to copy from yet.
+
+Covered so far (all hands-on, on a real sandbox branch `day-009-reset-practice`,
+created off `main` at `18be9e7`):
+- `git reset --soft/--mixed/--hard <commit>` — table taught (effect on
+  branch pointer / index / working tree), then each mode actually run and
+  verified via `git status` + `git log`, not just explained.
+- Real unplanned mistake used as a live `--mixed` demo (better than a
+  staged one): Juan ran `git add .` instead of `git add reset-practice.md`
+  while committing, which swept in an unrelated pending `handbook/git.md`
+  edit into the same commit. Self-diagnosed the cause correctly ("Oh shit
+  I ran git add ."). Fixed live with `git reset --mixed HEAD~1` (predicted
+  the outcome correctly first), then re-split into two separate commits.
+- Follow-on real mistake: the split-out `handbook/git.md` commit
+  (`efa1341`, "add why git branch -d didn't warn me") existed only on the
+  throwaway sandbox branch, not on `main`. Juan correctly predicted the
+  consequence (commit would be lost if the branch were later deleted).
+  Fixed by introducing `git cherry-pick` (not on today's official topic
+  list, but the right tool for "move one specific commit to another
+  branch" — flagged as introduced opportunistically, like rebase was on
+  Day 008/009 prep notes). Cherry-picked cleanly onto `main` as `f2a1cf6`,
+  pushed, verified `main`/`origin/main` synced.
+- `--hard` demonstrated deliberately: committed "line two", correctly
+  predicted it would be unrecoverable via `--soft`/`--mixed`-style undo but
+  recoverable via reflog, ran `git reset --hard HEAD~1`, confirmed content
+  gone from the file and commit gone from `git log`.
+- `git reflog`: read real reflog output (60+ entries, full project
+  history), correctly identified which of two duplicate "add line two..."
+  entries was the right one to recover (the most recent, right before the
+  most recent reset — not the older one from the `--soft` demo). Recovered
+  with `git reset --hard <hash>`, verified file content and log.
+- `git revert`: conceptual question first (why is `reset --hard` dangerous
+  on a shared/pushed branch, why isn't `revert`) — first answer conflated
+  "deletes teammate's commits" with the real mechanism; corrected to the
+  precise version (reset requires a force-push to publish, which rewrites
+  shared history teammates already have; revert adds a new forward commit,
+  nothing rewritten). Then ran `git revert ce5ed34` for real, confirmed the
+  original commit stays in `git log` (nothing erased) and a new revert
+  commit sits on top.
+- `git commit --amend`: conceptual question first (same shared-history
+  danger as reset, because amend replaces the commit with a new hash) —
+  answered correctly unprompted. Then ran it for real (added "line three",
+  amended into the revert commit), confirmed hash changed
+  (`d012b10` → `e2b6cfd`) but position/parent in history stayed the same.
+- Documentation check: read `git reset --help`'s description of
+  `--soft`/`--mixed`/`--hard` directly, compared against the taught table.
+  Confirmed alignment; also caught a real nuance the table didn't cover —
+  `--hard` can delete *untracked* files/directories if they're "in the way
+  of writing any tracked files," not just reset tracked-file changes.
+
+Where we left off (independent challenge, NOT yet completed):
+Scenario given: current HEAD (`e2b6cfd`, the amended revert commit,
+unpushed) contains `reset-practice.md` with "line one" and "line three".
+Juan was asked to remove "line three" from that commit using whichever
+tool from today fits, and to state which tool and why *before* running
+anything. He had not yet answered when the session paused. Resume by
+re-presenting this exact scenario (don't skip it or replace it with a new
+one) — natural fits are `--amend` again (edit file, `commit --amend`) or
+`reset --soft`/`--mixed` + edit + recommit; either is defensible, the
+point is he chooses and justifies it himself.
+
+Still pending after the challenge (do not skip):
+- Teach-back: have him explain reset (soft/mixed/hard) vs. revert vs.
+  amend in his own words, English, unprompted.
+- Handbook notes: `handbook/git.md` needs entries for `git reset`
+  (three modes), `git reflog`, `git revert`, and `git commit --amend`,
+  written by Juan (watch for the documentation-integrity pattern flagged
+  above — have him explain verbally before writing, given today's
+  4th-occurrence catch).
+- Journal entry for Day 009 (short Q&A format from Day 008, mentor
+  formats only).
+- Sandbox cleanup: `day-009-reset-practice` branch still exists locally
+  only (never pushed), currently sitting on `e2b6cfd`. Decide with Juan
+  whether to delete it after the challenge/handbook notes are done, or
+  keep it briefly for the teach-back.
+- Assessment classification for reset/revert/reflog/amend (none assigned
+  yet — session paused before this point).
+- Rebase-and-merge still flagged unpracticed from Day 008 — still
+  opportunistic, not urgent.
+
+Repo state at pause point:
+- `main`/`origin/main` synced at `f2a1cf6` ("add why git branch -d didn't
+  warn me" — the cherry-picked commit).
+- `day-009-reset-practice` (local only, not pushed) at `e2b6cfd`, working
+  tree clean.
+- `git cherry-pick` was introduced today though not on the original Day 009
+  topic list — note for whoever resumes this session.
 - Continue the new journal-writing process from Day 008 (short Q&A,
-  mentor formats only) for the Day 009 entry.
+  mentor formats only) for the Day 009 entry, once we get there.
