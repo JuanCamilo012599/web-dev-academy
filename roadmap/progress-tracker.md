@@ -362,10 +362,10 @@ only `main` remains locally and on GitHub, working tree clean.
 
 ---
 
-## Day 009 - Recovery from common Git mistakes (IN PROGRESS, paused mid-session)
+## Day 009 - Recovery from common Git mistakes
 
-Status: In progress — not yet complete. Resume from "Where we left off" below.
-Do not restart from scratch; do not skip the pending independent challenge.
+Status: Completed (resumed across two sessions — see "Session resumed" below for
+the second half).
 
 Spaced-review check-in (done, before new material):
 - Why squash-merge caused local/remote divergence on Day 008: correct
@@ -473,3 +473,122 @@ Repo state at pause point:
   topic list — note for whoever resumes this session.
 - Continue the new journal-writing process from Day 008 (short Q&A,
   mentor formats only) for the Day 009 entry, once we get there.
+
+### Session resumed (real gap of several days between the pause above and this)
+
+Juan opened the session not remembering where things had been left — flagged
+honestly rather than guessing, handled by a light spaced-review pass (reset
+modes, why `--hard` is dangerous on shared/pushed branches, what `revert`
+actually does) before returning to the paused independent challenge. Retrieval
+was rusty on two specific points (both previously-flagged nuances: `--mixed`
+still leaves changes in the working tree just unstaged; the shared-branch
+danger of `--hard` is specifically about needing a force-push, not "not
+verifying anything") — corrected in place, held up under a follow-up.
+
+Independent challenge (resumed, completed): remove "line three" from
+`reset-practice.md` on the amended revert commit `e2b6cfd`. Juan chose
+`git commit --amend` and, after one scaffolded nudge ("what would `reset
+--soft` still leave you to do afterward?"), correctly articulated *why*
+amend fits better than `reset --soft` here (amend folds edit+recommit into
+one step; both were equally safe here since the commit was unpushed).
+Executed for real: edited the file in VS Code, `git add`, `git commit
+--amend`, verified via `git log --oneline -3` that the hash changed
+(`e2b6cfd` → `5d478ef`) while position/parent in history stayed the same.
+
+Teach-back (reset/revert/amend): unprompted, correct, and notably solid —
+correctly distinguished `--soft` (staged, useful for combining local
+commits) vs. `--mixed` (unstaged but still in working tree, useful for
+recommitting differently) vs. `--hard` (discarded from both, only safe when
+unwanted and nobody else is on the branch); correctly tied `revert`/`amend`
+to private-vs-shared-history safety. Landed on his own rule of thumb:
+"reset/amend for cleaning up private history; revert for safely undoing
+shared history."
+
+Documentation-integrity catch — **5th occurrence**, same pattern as Days
+006/007/008/009 (first half): asked for a `reflog` teach-back next; the
+answer was fluent, fully punctuated, used phrases like "Git's local diary"
+and "signpost" — a sharp register shift from every other answer in the
+session (which were lowercase, typo'd, clearly live-typed). Flagged
+directly by name-checking the register difference rather than the content;
+Juan admitted immediately ("o read it online") without being pushed
+further. Given this is now the 5th time, flagged in this tracker as
+worth a direct, explicit conversation next session about *why* it keeps
+happening, rather than continuing to just re-flag it each time it recurs.
+
+Reflog rebuilt from scratch, this time for real: rather than re-asking for
+recall, had Juan run `git reflog -10` on the actual repo and read real
+output cold. Walked through `HEAD@{N}` ordering (correctly identified `{0}`
+as most recent) and a concrete live example in the output — three different
+commit hashes (`5d478ef`, `e2b6cfd`, `9795833`) all logged against the same
+"Revert ..." amend action. Juan correctly reasoned (with one nudge) that
+`--amend` creates a new commit object and moves the branch pointer, and
+that the old object isn't deleted, just unreferenced, until garbage
+collection — which is the actual mechanism behind why `reflog` could
+recover the "line two" commit after `--hard`. Final teach-back, entirely
+his own words this time: reflog as "history of where HEAD has pointed,"
+recovery working "because it was no longer on branch or HEAD pointing at
+it, with Git history I was able to recover it" — correct and defensible.
+
+Handbook updated (`handbook/git.md`, new `## Recovery from Common Git
+Mistakes` section): entries for `git reset` (three modes), `git reflog`,
+`git revert`, `git commit --amend`, written by Juan from his own
+already-articulated explanations. One typo caught and fixed (`--ammend` →
+`--amend`). Reflog entry read slightly more polished than his live chat
+answer but was judged to be normal writing-vs-talking cleanup, not a repeat
+of the copy-paste pattern — same content, tighter sentences.
+
+Journal: `journal/day-009.md` written using the Day 008 process (short
+Q&A, mentor formats only, no content supplied by mentor).
+
+Sandbox cleanup: handbook edits had been made directly on
+`day-009-reset-practice` (uncommitted) — Git correctly refused a branch
+switch until Juan resolved it. Same pattern as the earlier `efa1341`
+cherry-pick moment; Juan proposed the fix himself (commit on the sandbox
+branch, cherry-pick to `main`) without being told. Committed as `c811b7d`,
+cherry-picked onto `main` as `f55535c`, pushed. `day-009-reset-practice`
+then force-deleted with `git branch -D` (not `-d` — Juan correctly
+predicted `-d` would refuse since none of the sandbox commits were ever
+merged; this was flagged as the legitimate use case for `-D`, contrasted
+with the Day 008 case where `-d` wrongly *didn't* refuse). Branch was never
+pushed, so no remote cleanup was needed. Confirmed via `git branch -a`:
+only `main`/`origin/main` remain.
+
+### Assessment (final, both halves of Day 009 combined)
+
+- `git reset` (soft/mixed/hard): **Practiced** — correct table recall,
+  correct nuance on `--mixed` (working tree vs. staging) after one
+  correction, multiple real recoveries across both session halves.
+- `git revert`: **Practiced** — correct reasoning reproduced independently
+  twice, including the precise "no force-push needed" mechanism (not just
+  "doesn't delete teammate's commits").
+- `git commit --amend`: **Practiced**, trending toward independently
+  demonstrated — chose it correctly and unprompted for the independent
+  challenge, justified the choice himself after one scaffolded nudge,
+  executed cleanly.
+- `git reflog`: **Introduced/Practiced**, not higher yet — genuine
+  understanding by the end, but required real scaffolding (rebuilding from
+  live `git reflog` output) after an admitted copy-paste attempt. Revisit
+  with a fresh, from-scratch recall next spaced-review pass before calling
+  this independently demonstrated.
+- `git cherry-pick`: **Practiced** — opportunistic tool (not originally on
+  Day 009's plan), now used correctly and independently twice in one day.
+- Documentation-integrity pattern (5th occurrence): flagged for a direct
+  conversation next session, not just another inline catch-and-correct.
+
+Repo state at end of session: `main`/`origin/main` synced at `f55535c`
+("add reset, reflog, revert, amend notes"). No other local branches.
+Working tree clean.
+
+Journal:
+- journal/day-009.md
+
+Handbook:
+- handbook/git.md ("Recovery from Common Git Mistakes")
+
+Next class: **Day 010** — topic not yet chosen. Candidates flagged as
+opportunistic-but-not-yet-covered: rebase-and-merge (flagged unpracticed
+since Day 008/009), or move on to the next item in
+`curriculum-phases.md`'s Phase 1 sequence. Also carry forward: a direct,
+explicit conversation about the recurring documentation-integrity pattern
+(5 occurrences now) before or alongside whatever technical topic comes
+next.
