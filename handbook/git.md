@@ -316,3 +316,31 @@ Rule:  first line ≤50 characters, written in imperative mood (like a command �
 1. Merge commit — every commit from my branch stays exactly as-is, plus Git adds one new commit that ties the two histories together.
 2. Squash and merge — all commits on my branch get combined into a single new commit on the base branch.
 3. Rebase and merge — My branch's commits get replayed one-by-one directly onto the tip of the base branch, in order, with no merge commit at all. (not practiced yet)
+
+## Recovery from Common Git Mistakes
+
+### Entries:
+
+#### git reset: 
+moves the current branch backward to an earlier commit. the modes decide what happens to the displaced changes
+
+#### git reset --soft:
+keep them staged. Useful for rebuilding or combining recent local commits.
+
+#### git reset --mixed:
+keep them in the working files but unstage them. useful when i want to recommit differently
+
+#### git reset --hard:
+discard them from both staging and working files. used only when im certain those local changes are unwanted and nobody else is working on the branch
+
+#### git reflog:
+is Git’s local history of where HEAD and branches previously pointed. It can recover commits after a hard reset because those commits usually still exist temporarily—only the branch pointer moved.
+
+#### git revert:
+revert doesnt rewrite history. it creates a new commit that reverses an older commit.  what i'd normally use for changes already pushed or shared, because everyone's history remains consistent
+
+#### git commit --amend:
+replaces the latest commit with a corrected version, perhaps adding a forgotten file or fixing its message. because the commit gets a new identity, i'd mainly use it before sharing that commit
+
+#### Key Take Away:
+My rule of thumb: reset/amend for cleaning up private history; revert for safely undoing shared history.
