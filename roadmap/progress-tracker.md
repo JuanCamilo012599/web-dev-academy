@@ -709,10 +709,11 @@ Journal:
 Handbook:
 - handbook/git.md ("Rebase Vs Merge")
 
-Next class: **Day 011**. Phase 1's readiness bar (explain reset/revert/
-amend unprompted, diagnose diverged branches independently) was already met
-as of Day 009, and rebase-and-merge — the last opportunistic Phase 1 item —
-is now also practiced. Recommend starting **Phase 2 (TypeScript and
-JavaScript fundamentals)** per `curriculum-phases.md`, unless Juan
-identifies a remaining Phase 1 gap first. No unresolved blockers carried
-forward from Day 010.
+Next class: **Day 011 — Phase 2, TypeScript and JavaScript fundamentals**
+(confirmed with Juan at end of Day 010). Phase 1's readiness bar (explain
+reset/revert/amend unprompted, diagnose diverged branches independently)
+was already met as of Day 009, and rebase-and-merge — the last
+opportunistic Phase 1 item — is now also practiced. See
+`curriculum-phases.md`'s "Phase 2 — TypeScript and JavaScript fundamentals"
+section for the learning/practice/produce targets. No unresolved blockers
+carried forward from Day 010.
