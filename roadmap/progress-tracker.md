@@ -592,3 +592,127 @@ since Day 008/009), or move on to the next item in
 explicit conversation about the recurring documentation-integrity pattern
 (5 occurrences now) before or alongside whatever technical topic comes
 next.
+
+---
+
+## Day 010 - Rebase vs Merge
+
+Status: Completed
+
+Spaced-review check-in on Day 009 (done, before new material):
+- Revert vs. `reset --hard` mechanism: first answer conflated the local
+  effect of `--hard` (discards working tree/staging) with the actual reason
+  it's dangerous on a *shared* branch. Corrected with Socratic scaffolding
+  (direction of data flow, force-push, non-fast-forward refusal) rather than
+  given the answer — ended with a fully correct, self-reconstructed
+  explanation: shared history diverges, a normal `pull` gets refused because
+  it can't fast-forward, and a teammate forcing their branch to match would
+  lose any work built on the now-erased commits.
+- `--mixed` vs `--hard` effect on working tree: correct immediately,
+  including an unprompted correct note that `--mixed` is git reset's default
+  mode.
+
+Documentation-integrity conversation (direct, as flagged after the 5th
+occurrence in Day 009): Juan named the real cause himself unprompted — "I
+believe my own phrasing is not good enough." Mentor pushed back on that
+framing (notes are for his own retention, not graded prose; a rougher
+sentence he wrote himself is more valuable than a polished copied one).
+Offered a hard verbal-first gate as a formal process change; Juan declined
+the formal mechanism ("no need to say it out loud... I'll stop, no more
+copy") and asked to self-regulate instead. Agreed compromise: no new
+process imposed, but a 6th occurrence triggers the verbal-first gate for
+real, no further negotiation. Today's actual handbook and journal writing
+(see below) was checked against this and came back clean — content matched
+his live chat register, no polish/formality shift detected.
+
+Covered (hands-on, sandbox branch `day-010-rebase-practice`, deleted at
+end of session):
+- Concept taught: `rebase` vs `merge` — merge joins two histories with a
+  merge commit (safe, nothing rewritten); rebase replays a branch's commits
+  one-by-one onto a new base, giving each replayed commit a new hash
+  (cleaner/linear history, but rewrites commits — same class of danger as
+  `reset --hard`/`amend` on shared history).
+- Clean rebase demonstrated first: created divergence (commit on sandbox
+  branch, separate commit directly on `main` simulating a teammate), Juan
+  correctly predicted before running it that his commit would get a new
+  hash and sit after the `main`-side commit, then verified via
+  `git log --graph --all` that the graph collapsed from two branches to a
+  straight line.
+- Conflict rebase demonstrated second (same line edited on both sides on
+  purpose): correctly predicted a conflict would occur. First conflict came
+  back as `(add/add)` rather than the usual "both modified" — Juan
+  correctly reasoned why (the file never existed at the common ancestor;
+  both sides created it independently in diverged history).
+- Real mistake (not staged): first resolution attempt ran `git add` on the
+  conflicted file *without* actually deleting the `<<<<<<<`/`=======`/
+  `>>>>>>>` marker lines — Git doesn't validate marker removal, it just
+  trusts whatever content is staged. This produced a second, nested
+  conflict when the next queued commit (`687e3d0`) tried to apply on top of
+  the still-marker-laden file. Juan self-diagnosed correctly when asked
+  ("I just added the file without removing markers"). Recovered with
+  `git rebase --abort` (correctly identified as the right tool, back to the
+  exact pre-rebase diverged state, verified via `git log --graph --all`),
+  then redid the rebase and resolved both conflicts properly.
+- Second real mistake on the redo: after "cleanly" resolving, `cat` on the
+  file revealed leftover ref-hash/commit-message text (e.g.
+  `48ff4ef (add rebase-practice.md on feature branch)`) — Juan had deleted
+  only the `>>>>>>>` marker symbol but left the trailing text that shared
+  its line. Self-diagnosed again when asked. Fixed with `git commit
+  --amend` (Juan chose the tool himself, correctly reasoning it was the
+  unpushed tip commit on a private sandbox branch) — verified hash changed
+  (`7c7462c` → `c4a418f`) and file content confirmed clean via `cat`.
+- Documentation reading: `man git-rebase`, searched for and read the
+  specific warning paragraph on rebasing published/shared history. Juan
+  correctly tied it to the same underlying mechanism as the Day 009
+  force-push discussion (rewriting history others already pulled).
+- Full unprompted teach-back (merge vs. rebase, when each is safe/unsafe):
+  accurate on every point, including a more precise formulation than a
+  blanket rule — "NEVER rebase shared history unless it was explicitly
+  coordinated," correctly allowing for team-coordinated exceptions rather
+  than a flat never.
+- Handbook (`handbook/git.md`, new `## Rebase Vs Merge` section) and
+  journal (`journal/day-010.md`, same short-Q&A/mentor-formats-only process
+  as Days 008/009) both written by Juan from his own already-articulated
+  teach-back answers — checked directly against the live chat transcript,
+  no copy-paste register shift found.
+- Sandbox cleanup: `git branch -D day-010-rebase-practice` (Juan correctly
+  chose `-D` over `-d`, reasoning the branch was never merged into `main`).
+  Never pushed, so no remote cleanup needed. Verified via `git branch -a`:
+  only `main`/`origin/main` remain.
+
+### Assessment
+
+- `git rebase` (basic replay onto an updated base): **Practiced** — correct
+  prediction before running, correct interpretation of the resulting graph.
+- Rebase conflict resolution (including recognizing `add/add` vs content
+  conflicts): **Practiced** — genuine mistakes (marker text left in twice,
+  in two different ways) worked through to a real fix rather than
+  fixed-for-him; second mistake caught only because output was verified
+  (`cat` the file) instead of trusting a "done"/clean-sounding claim.
+- Merge vs. rebase conceptual distinction, including the shared-history
+  danger: **Practiced, trending toward independently demonstrated** — full
+  unprompted teach-back was accurate and included a nuance (coordinated
+  exception) beyond what was taught directly.
+- `git rebase --abort`: **Introduced/Practiced** — one real, correctly-used
+  instance recovering from a botched conflict resolution.
+- Documentation-integrity pattern: no new (6th) occurrence today; Juan
+  self-regulated without the formal verbal-first gate. Revisit the
+  hard-gate agreement immediately if it recurs.
+
+Repo state at end of session: `main`/`origin/main` synced at `e9b0463`
+("journal/day 10 rebase vs merge"). No other local or remote branches.
+Working tree clean.
+
+Journal:
+- journal/day-010.md
+
+Handbook:
+- handbook/git.md ("Rebase Vs Merge")
+
+Next class: **Day 011**. Phase 1's readiness bar (explain reset/revert/
+amend unprompted, diagnose diverged branches independently) was already met
+as of Day 009, and rebase-and-merge — the last opportunistic Phase 1 item —
+is now also practiced. Recommend starting **Phase 2 (TypeScript and
+JavaScript fundamentals)** per `curriculum-phases.md`, unless Juan
+identifies a remaining Phase 1 gap first. No unresolved blockers carried
+forward from Day 010.
