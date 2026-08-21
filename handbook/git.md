@@ -1,5 +1,6 @@
 # Git and GitHub
 
+
 ## Git Notes From Day 2
 
 ### git add .
@@ -20,6 +21,7 @@ Important:
 git commit -am does not add brand-new files.
 
 For new files, I need to use git add first.
+
 
 ## Git Fundamentals
 
@@ -74,6 +76,7 @@ git diff
 git diff --staged
 
 This helps prevent bad commits and accidental mistakes.
+
 
 ## GitHub Connection
 
@@ -133,6 +136,7 @@ Pushes my local main branch to GitHub and sets it to track origin/main
 ### origin/main
 origin/main represents the main branch that lives on GitHub
 
+
 ## GitHub Lesson
 
 A professional Git workflow is:
@@ -145,6 +149,7 @@ A professional Git workflow is:
 After the first push, I can usually use:
 
 git push
+
 
 ## GitHub Workflow and Sync
 
@@ -237,6 +242,7 @@ Resolving a conflict:
 
 6. `git push`.
 
+
 ## Branching in Git
 
 ### git branch
@@ -317,6 +323,7 @@ Rule:  first line ≤50 characters, written in imperative mood (like a command �
 2. Squash and merge — all commits on my branch get combined into a single new commit on the base branch.
 3. Rebase and merge — My branch's commits get replayed one-by-one directly onto the tip of the base branch, in order, with no merge commit at all. (not practiced yet)
 
+
 ## Recovery from Common Git Mistakes
 
 ### Entries:
@@ -344,3 +351,24 @@ replaces the latest commit with a corrected version, perhaps adding a forgotten 
 
 #### Key Take Away:
 My rule of thumb: reset/amend for cleaning up private history; revert for safely undoing shared history.
+
+
+## Rebase Vs Merge
+
+### Merge
+Merge combines two branches while preserving the history of how they developed. it creates a merge commit so the history could look mixed, but its safe because existing commits arent rewritten
+
+### Rebase
+Rebase moves my branch's commits on top of another branch, making it look like I started from the latest version. might look cleaner and straight line history but it rewrites those commits and gives them a new ID
+
+#### Safe to Rebase
+My Branch is private, nobody else is using its commits
+
+#### Dangerous to Rebase
+The commits are on a shared branch. rewriting them can cause duplicates, conflicts, add/add, and confusing history
+
+### Merge Instead
+When  preserving shared history or unsure if others are using the branch
+
+### Key Take Away:
+'merge' preserves history and 'rebase' rewrites history for a cleaner one. NEVER rebase shared history unless it was explicitly coordinated
