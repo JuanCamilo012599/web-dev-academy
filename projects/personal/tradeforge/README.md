@@ -2,9 +2,9 @@
 
 ## Status
 
-Idea — not started. Shelved as of 2026-08-16: deprioritized in favor of the core SDET roadmap
-and its Phase 12 portfolio projects. Revisit later, not currently being worked. Details to be
-filled in with Juan (existing Pine Script work referenced but not yet described here).
+Idea — not started. Shelved as of 2026-08-16: deprioritized in favor of the core roadmap and its
+Phase 12 portfolio projects. Revisit later, not currently being worked. Details to be filled in
+with Juan (existing Pine Script work referenced but not yet described here).
 
 ## Problem Statement
 
@@ -22,10 +22,11 @@ standalone app are still open.
 
 ## Roadmap Connections
 
-None currently. Its old connections (cloud hosting, containerizing, IaC, monitoring) were tied
-to the Cloud Engineer plan and no longer apply under the SDET curriculum — this project isn't
-mapped to any current phase. Could plausibly resurface later as a capstone-under-test target
-(something to write Playwright/API tests against), but that's undecided; not a live plan.
+None currently. Its old connections (cloud hosting, containerizing, IaC, monitoring under the
+Cloud Engineer plan; a capstone-under-test target under the SDET plan) no longer apply — this
+project isn't mapped to any current phase. Under the Web Developer plan it could plausibly
+resurface as a genuine Phase 12 capstone candidate instead (front end + back end + database, the
+kind of app the portfolio needs), but that's undecided; not a live plan.
 
 ## Next Steps
 

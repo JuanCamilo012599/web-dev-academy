@@ -1,10 +1,47 @@
-# SDET / QA Automation Academy - Progress Tracker
+# Web Developer Academy - Progress Tracker
 
-This file is the source of truth for my SDET / QA Automation Academy progress.
+This file is the source of truth for my Web Developer Academy progress.
 See `curriculum-phases.md` for the full phase-by-phase curriculum and
 `../CLAUDE.md` for mentor/teaching instructions.
 
-## Career Direction Update — 2026-07-29
+## Career Direction Update — 2026-08-23 (final)
+
+Career target changed from SDET / Test Automation Engineer / QA Automation Engineer to **Web
+Developer with Front End and Back End experience** (full-stack). Juan has stated this is his
+definitive direction and no further career-direction changes are expected — do not propose or
+plan around another pivot.
+
+**What transfers, unchanged:** all of Days 001-010 below. Git/GitHub and Linux/command-line
+fundamentals are direct prerequisites for any software role, and the JavaScript/TypeScript
+fundamentals that were already Phase 2 under the SDET plan are identical under this plan — Day
+011 continues from exactly where it left off, no rework needed.
+
+**What changed in the curriculum:** see `curriculum-phases.md` for the full revised phase
+structure (Phase 1 Git/GitHub → Phase 13 employment prep) and its "What carries over from the
+SDET plan" section. HTML/CSS/DevTools, SQL, HTTP/REST, GitHub Actions/CI/CD, and Docker were
+retained but reframed from *testing* applications to *building* them. React (front end) and
+Node.js/Express (back end) are newly added — they didn't exist under the SDET plan, which tested
+applications rather than built them. SDET-specific deep phases (professional-depth Playwright
+framework design, API-testing-as-a-specialty, dedicated flaky-test/test-architecture work, and a
+dedicated a11y/perf/security *testing* phase) were removed as not load-bearing for this target;
+testing survives only as a lightweight Phase 8 (unit tests + basic E2E smoke tests), appropriate
+for a developer rather than a QA specialist.
+
+**Repository/GitHub renamed to match:** `sdet-academy` → `web-dev-academy`, both the local
+folder (`~/sdet-academy` → `~/web-dev-academy`) and the GitHub repository
+(`github.com/JuanCamilo012599/sdet-academy` → `github.com/JuanCamilo012599/web-dev-academy`).
+Any older notes or command examples in this repo referencing the `sdet-academy` path predate the
+rename and describe what was true at the time, not the current path.
+
+**Circumstances confirmed 2026-08-23** (informs pacing — unchanged from 2026-07-29, revisit only
+if these actually change): study time ~2-3 hrs/day, Monday-Friday; programming background is
+CS50-only; English is conversational, still building technical vocabulary; based in Florida,
+USA, with a work permit and citizenship pending — targeting US remote roles, no sponsorship
+needed; training budget roughly $200-1000 total, not recurring. No certificate is being pursued.
+
+---
+
+## Career Direction Update — 2026-07-29 (superseded 2026-08-23, kept for history)
 
 Career target changed from Cloud Engineer to **SDET / Test Automation Engineer / QA Automation
 Engineer**. Reasoning: fully remote work, good work-life balance, predictable hours with no
@@ -709,11 +746,13 @@ Journal:
 Handbook:
 - handbook/git.md ("Rebase Vs Merge")
 
-Next class: **Day 011 — Phase 2, TypeScript and JavaScript fundamentals**
-(confirmed with Juan at end of Day 010). Phase 1's readiness bar (explain
-reset/revert/amend unprompted, diagnose diverged branches independently)
-was already met as of Day 009, and rebase-and-merge — the last
-opportunistic Phase 1 item — is now also practiced. See
-`curriculum-phases.md`'s "Phase 2 — TypeScript and JavaScript fundamentals"
-section for the learning/practice/produce targets. No unresolved blockers
-carried forward from Day 010.
+Next class: **Day 011 — Phase 2, JavaScript and TypeScript fundamentals**
+(confirmed with Juan at end of Day 010; unaffected by the 2026-08-23
+career-direction update to Web Developer — see "Career Direction Update —
+2026-08-23" at the top of this file, Phase 2 is identical under the new
+plan). Phase 1's readiness bar (explain reset/revert/amend unprompted,
+diagnose diverged branches independently) was already met as of Day 009,
+and rebase-and-merge — the last opportunistic Phase 1 item — is now also
+practiced. See `curriculum-phases.md`'s "Phase 2 — JavaScript and
+TypeScript fundamentals" section for the learning/practice/produce targets.
+No unresolved blockers carried forward from Day 010.

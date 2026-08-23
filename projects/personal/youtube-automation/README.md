@@ -6,9 +6,9 @@ Idea — not started.
 
 ## Problem Statement
 
-Turn my SDET / QA Automation Academy progress into a faceless, largely automated YouTube
-channel that teaches Git/Linux/test-automation fundamentals to other beginners, using the
-same journal/handbook notes I'm already producing as source material.
+Turn my Web Developer Academy progress into a faceless, largely automated YouTube channel that
+teaches Git/Linux/web-development fundamentals to other beginners, using the same journal/
+handbook notes I'm already producing as source material.
 
 ## Open Questions
 
@@ -20,12 +20,12 @@ same journal/handbook notes I'm already producing as source material.
 
 ## Roadmap Connections
 
-Reframed 2026-08-16 for the SDET pivot (was previously scoped around cloud-infra content).
-A strong real-world vehicle for CS50/Python scripting (the automation pipeline itself: script
-generation, file handling), Phase 1 (Git — journal/handbook entries as source material), and
-Phase 8 (GitHub Actions, if the pipeline ends up running in CI rather than locally). Not one
-of the three required Phase 12 portfolio projects, but a good side demonstration of automation
-instincts alongside them.
+Reframed 2026-08-23 for the Web Developer pivot (previously scoped around SDET content, and
+cloud-infra content before that). A strong real-world vehicle for CS50/Python scripting (the
+automation pipeline itself: script generation, file handling), Phase 1 (Git — journal/handbook
+entries as source material), and Phase 9 (GitHub Actions, if the pipeline ends up running in CI
+rather than locally). Not one of the three required Phase 12 portfolio projects, but a good side
+demonstration of automation instincts alongside them.
 
 ## Next Steps
 

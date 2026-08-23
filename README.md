@@ -1,24 +1,27 @@
-# SDET / QA Automation Academy
+# Web Developer Academy
 
-This repository documents my journey to become a Test Automation Engineer / SDET. It started as
-a Cloud Engineer Academy; the career target changed on 2026-07-29 (see
-[roadmap/progress-tracker.md](roadmap/progress-tracker.md) for why, and
-[roadmap/curriculum-phases.md](roadmap/curriculum-phases.md) for what carried over).
+This repository documents my journey to become a Web Developer with Front End and Back End
+experience (full-stack). It started as a Cloud Engineer Academy, pivoted to an SDET / QA
+Automation Academy on 2026-07-29, and pivoted again on 2026-08-23 to this — my definitive
+direction. See [roadmap/progress-tracker.md](roadmap/progress-tracker.md) for the full decision
+record and [roadmap/curriculum-phases.md](roadmap/curriculum-phases.md) for what carried over
+from the SDET plan.
 
 ## Goals
 
 - Learn Git and GitHub (in progress, carried over from the original plan)
-- Learn TypeScript and JavaScript fundamentals
-- Learn HTML, CSS, and browser developer tools
-- Learn software testing principles
-- Learn Playwright for web automation
-- Learn API and HTTP testing
-- Learn SQL and database validation
-- Learn GitHub Actions and CI/CD
-- Learn basic Docker
-- Learn test architecture and how to eliminate flaky tests
-- Build a professional automation portfolio (3 projects)
-- Prepare for Test Automation Engineer / QA Automation Engineer / SDET roles
+- Learn JavaScript and TypeScript fundamentals
+- Learn HTML, CSS, and front-end fundamentals (layout, responsive design, DevTools)
+- Learn React and front-end application development
+- Learn Node.js, Express, and REST API development
+- Learn SQL and database design for applications
+- Learn full-stack integration and authentication
+- Learn testing fundamentals for web applications (unit + basic end-to-end)
+- Learn GitHub Actions, CI/CD, and Docker basics
+- Learn deployment and hosting (front end, back end, database)
+- Learn accessibility and performance fundamentals
+- Build a professional full-stack portfolio (3 projects)
+- Prepare for Front End / Back End / Full Stack Developer roles
 
 Completing Harvard's CS50x in parallel — see "CS50 integration" in
 [roadmap/curriculum-phases.md](roadmap/curriculum-phases.md) for how it maps into this plan.
