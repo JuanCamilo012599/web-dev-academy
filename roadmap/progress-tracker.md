@@ -756,3 +756,128 @@ and rebase-and-merge — the last opportunistic Phase 1 item — is now also
 practiced. See `curriculum-phases.md`'s "Phase 2 — JavaScript and
 TypeScript fundamentals" section for the learning/practice/produce targets.
 No unresolved blockers carried forward from Day 010.
+
+---
+
+## Day 011 - JavaScript Fundamentals: Variables (let, const, var)
+
+Status: Completed
+
+Spaced-review check-in on Day 010 (done, before new material): all three
+questions (why `reflog` could recover a commit after `--hard`, merge vs.
+rebase conceptually, why rebase produces new commit hashes and why that's
+dangerous on shared branches) answered correctly and unprompted, with
+accurate mechanism-level reasoning (commit hash derived from content
+including parent pointer; reflog entries themselves keep old commits
+reachable until GC). Phase 1 fully closed out.
+
+**CS50 pacing decision:** Juan raised that he's only reached CS50 Week 2,
+having spent nearly all study time on web-dev-academy instead of the
+intended ~30-40% CS50 / 60-70% web-dev split. He considered pausing
+web-dev-academy entirely to finish CS50 first (sequentially); mentor
+recommended against a full stop (CS50 is ~10-12 weeks of material; a full
+pause would cost the momentum built over 10 straight sessions) and proposed
+reserving fixed CS50-only time instead. Agreed: **1-2 dedicated CS50-only
+days per week**, not yet pinned to specific weekdays. Follow up in future
+sessions on whether this is actually happening.
+
+Covered:
+- Environment fix (real, unplanned, good troubleshooting rep): `node
+  --version` returned "not found" while `npm --version` returned `11.16.0`
+  — an inconsistency worth investigating rather than shrugging off. Guided
+  diagnosis via `which npm` / `which node` / `echo $PATH` revealed `npm` was
+  resolving to a Windows-side Node install (`/mnt/c/Program Files/nodejs/`)
+  leaking into WSL's `PATH` via Windows/WSL interop; `node.exe` has no
+  extensionless `node` name so `which node` found nothing. Explained why
+  this matters beyond the immediate error (running Windows-side Node against
+  WSL files causes real bugs later - path translation, permissions, slow
+  file watching). Installed Node natively via `nvm` (read the official
+  "Installing and Updating" section on the nvm GitHub README first, stated
+  what the install script does and why a shell reload is needed, before
+  running it) - `nvm install --lts` brought in Node v24.20.0 / npm v11.19.0.
+  Verified via `which node`/`which npm` both now resolve under
+  `~/.nvm/versions/node/...`.
+- Node REPL vs. running a file (`node` alone vs. `node file.js`) - same V8
+  engine as the browser, relevant for both front-end (browser) and back-end
+  (Node/Express) work later.
+- Type coercion: `"hello" + "world"` (string concatenation), `typeof 42` vs
+  `typeof "42"`, then `1 + "1"` → `"11"` - correctly predicted, then
+  explained the mechanism (`+` coerces the non-string operand to a string
+  whenever either side is a string, rather than doing math). Tied explicitly
+  to why TypeScript (later this phase) exists - catching this class of
+  silent-coercion bug at compile time.
+- `let`/`const`/`var` hands-on in the REPL, including two genuine mistakes
+  used as live teaching moments: re-running `let x = 5;` a second time in
+  the same REPL session threw a `SyntaxError` (redeclaration not allowed),
+  while `x = 10` (plain reassignment) worked fine; `const y = 10;`
+  reassignment threw a `TypeError` instead. First guesses at *why* these are
+  different error categories were inverted/off; corrected with scaffolding
+  rather than given the answer outright, and by the second pass Juan
+  correctly reasoned that `SyntaxError` = caught at parse time (structural,
+  visible without running anything) vs. `TypeError` = caught at runtime
+  (`y = 10;` looks syntactically valid in isolation; only resolving what `y`
+  actually is, at runtime, reveals the violation).
+- Scope (`var` function/global-scoped vs. `let`/`const` block-scoped),
+  demonstrated with a real file (`projects/js-fundamentals/scope.js`, an
+  `if` block declaring both) rather than just explained - Juan correctly
+  predicted both outcomes (`a` prints `1`, `b` throws `ReferenceError`)
+  before running it, and correctly reasoned that `console.log(a)` still
+  executes and prints before the script crashes on the next line.
+- Real terminal/environment mistakes, corrected in place (normal early
+  friction, not concept gaps): typed JS code directly at the bash prompt
+  instead of into a file (bash doesn't parse JS); ran `mkdir -p
+  projects/js-fundamentals` from `~` instead of `~/web-dev-academy`,
+  creating the folder in the wrong location - diagnosed via prompt
+  inspection, cleaned up with `rmdir`, redone from the correct directory.
+- Documentation reading: MDN `let` reference page, "Difference between
+  `let` and `var` declarations" section - correctly extracted the three
+  differences (scope, hoisting/TDZ, redeclaration).
+- Teach-back (unprompted, own words): correctly restated all three
+  `let`/`var` differences from the MDN section, and produced his own
+  default-usage rule - "const first, let when needed, var almost never" -
+  matching real-world professional JS style.
+- Handbook (`handbook/javascript.md`, new file, first JS entry) and journal
+  (`journal/day-011.md`, same short-Q&A/mentor-formats-only process as Days
+  008-010) both written by Juan in his own words/phrasing - handbook
+  register matched his live chat answers, no copy-paste pattern detected.
+
+### Assessment
+
+- `typeof` and implicit type coercion (`+` operator string-coercion
+  behavior): **Introduced/Practiced** - correctly predicted `1 + "1"` before
+  running, and explained the coercion mechanism afterward.
+- `let`/`const`/`var` - declaration, reassignment, redeclaration rules:
+  **Practiced** - real (unplanned) errors worked through to correct
+  reasoning, not just definitions recited.
+- `SyntaxError` (parse-time) vs. `TypeError` (runtime) as a general
+  category distinction: **Introduced/Practiced** - first guesses were
+  inverted, but self-corrected to an accurate mechanism-level explanation
+  after scaffolding.
+- Scope (`var` function/global vs. `let`/`const` block): **Practiced** -
+  correct prediction before running real code, not just told the rule.
+- Node/nvm environment literacy (diagnosing a `PATH` conflict between
+  Windows and WSL Node installs): **Introduced/Practiced** - genuine,
+  unplanned diagnostic work, not a scripted exercise.
+
+Repo state at end of session: `main`/`origin/main` synced at `6564204`
+("js fundamentals let, const, var"). Working tree clean. New files:
+`handbook/javascript.md`, `journal/day-011.md`,
+`projects/js-fundamentals/scope.js`.
+
+Journal:
+- journal/day-011.md
+
+Handbook:
+- handbook/javascript.md ("Variables: let, const, var")
+
+Next class: **Day 012 — continue Phase 2, JavaScript fundamentals.**
+Topics not yet covered from Phase 2's scope: functions, control flow
+(comparing JS `if`/`for`/`while`/`switch` syntax against what Juan already
+knows from CS50 Python/C), arrays and objects, `===`/`==` (flagged but not
+yet directly drilled - today covered coercion via `+`, not equality
+comparison specifically), then `async`/`await`/promises, modules
+(`import`/`export`), `npm`/`package.json`, and basic TypeScript. Suggested
+next step: strict vs. loose equality (`===` vs `==`) is a natural, small
+next class since it directly extends today's coercion discussion. No
+unresolved blockers. Remember to check in on the CS50 1-2-day/week pacing
+agreement made today.
